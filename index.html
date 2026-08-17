@@ -28,9 +28,19 @@
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text);
-      background: var(--bg);
+      background: transparent;
       line-height: 1.6;
       overflow-x: hidden;
+    }
+
+    html {
+      background: var(--bg);
+    }
+
+    #tsparticles {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
     }
 
     h1, h2, h3, h4 {
@@ -297,6 +307,8 @@
    
     #skills {
       background: var(--bg-alt);
+      position: relative;
+      z-index: 1;
     }
 
     .skills-grid {
@@ -389,7 +401,7 @@
     
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
       gap: 2rem;
     }
 
@@ -411,7 +423,7 @@
 
     .project-image {
       width: 100%;
-      aspect-ratio: 16 / 9;         
+      height: 180px;
       position: relative;
       overflow: hidden;
 
@@ -471,7 +483,7 @@
     }
 
     .project-content {
-      padding: 2rem;
+      padding: 1.5rem 1.75rem;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -485,7 +497,9 @@
     .project-card p {
       color: var(--text-light);
       margin-bottom: 1rem;
-      line-height: 1.6;
+      max-width: 60ch;
+      font-size: 0.95rem;
+      line-height: 1.5;
       flex: 1;
     }
 
@@ -546,6 +560,8 @@
     /* Contact Section */
     #contact {
       background: var(--bg-alt);
+      position: relative;
+      z-index: 1;
     }
 
     .contact-content {
@@ -757,23 +773,68 @@
     border-radius: 8px;
   }
 }
+.mobile-lang {
+  display: none;
+}
+
+.desktop-lang {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    left: -100%;
+    top: 60px;
+    flex-direction: column;
+    background-color: var(--bg);
+    width: 100%;
+    text-align: center;
+    transition: left 0.3s ease;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    padding: 2rem 0;
+    z-index: 99;
+  }
+
+  .nav-links.active {
+    left: 0;
+  }
+
+  .nav-links li {
+    margin: 1.5rem 0;
+  }
+
+  .mobile-lang {
+    display: block;
+  }
+
+  .desktop-lang {
+    display: none;
+  }
+}
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2/tsparticles.slim.bundle.min.js"></script>
 </head>
 <body>
+  <div id="tsparticles"></div>
 
   <!-- Navigation -->
   <nav id="navbar">
-    <div class="nav-container">
-      <div class="logo">Douriem</div>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button class="lang-toggle">🇫🇷 FR</button>
-      <button class="mobile-menu-btn">☰</button>
-    </div>
+  <div class="nav-container">
+    <div class="logo">Douriem</div>
+    
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li class="mobile-lang"><button class="lang-toggle">🇫🇷 FR</button></li>
+    </ul>
+    
+    <button class="lang-toggle desktop-lang">🇫🇷 FR</button>
+    <button class="mobile-menu-btn">☰</button>
+  </div>
+</nav>
   </nav>
 
   <!-- Hero Section -->
@@ -781,13 +842,11 @@
     <div class="hero-content">
       <span class="hero-label">👋 Welcome to my portfolio</span>
       <h1>
-        <span class="gradient-text">Design driven</span><br>
-        Frontend Developer
+        <span class="gradient-text">Web Developer</span><br>
+        & Designer
       </h1>
       <p>
-        I craft clean, intuitive web experiences that blend aesthetic design with functional code. 
-        Specializing in turning creative concepts into responsive, user-friendly digital products.
-      </p>
+        I create modern, responsive websites that combine thoughtful design with functional, maintainable code.
       <div class="cta-buttons">
         <a href="#projects" class="btn btn-primary">View Projects</a>
         <a href="#contact" class="btn btn-secondary">Contact Me</a>
@@ -803,19 +862,12 @@
     </div>
     <div class="about-content">
       <p>
-        I'm a frontend developer with a passion for creating beautiful, functional web experiences. 
-        My journey began with curiosity about how websites work, and has evolved into a love for 
-        crafting user interfaces that are both visually engaging and technically sound.
-      </p>
-      <p>
-        I specialize in HTML, CSS, and JavaScript, with growing expertise in Python and modern frameworks. 
-        Every project is an opportunity to push my skills further—from e-commerce platforms to creative 
-        concept sites. I believe great web development happens at the intersection of design thinking 
-        and clean code.
-      </p>
-      <p>
-        When I'm not coding, I'm exploring design trends, learning new technologies, and thinking 
-        about how to make the web more accessible and enjoyable for everyone.
+        I'm a developer focused on creating thoughtful digital products that bring together design, technology, and functionality. Over the past year, I've worked across a range of projects, from e-commerce and creative platforms to professional websites, portfolio systems, and content management solutions.
+
+My experience spans frontend development, UI/UX, responsive web design, content management, authentication, deployment, and the integration of modern web technologies. I work across different tools and technologies depending on what a project requires, with a focus on building interfaces that are clear, reliable, and purposeful.
+
+I enjoy taking an idea from its initial structure through development and refinement, solving the technical problems that appear along the way, and turning it into something people can actually use. Each project has pushed me to understand not just how to build a website, but how the different pieces of a digital product work together.
+
       </p>
     </div>
   </section>
@@ -852,10 +904,10 @@
         <div class="progress-container">
           <div class="progress-label">
             <span>Proficiency</span>
-            <span>45%</span>
+            <span>55%</span>
           </div>
           <div class="progress-bar">
-            <div class="progress-fill" style="--width: 45%"></div>
+            <div class="progress-fill" style="--width: 55%"></div>
           </div>
         </div>
       </div>
@@ -868,10 +920,10 @@
         <div class="progress-container">
           <div class="progress-label">
             <span>Proficiency</span>
-            <span>85%</span>
+            <span>95%</span>
           </div>
           <div class="progress-bar">
-            <div class="progress-fill" style="--width: 85%"></div>
+            <div class="progress-fill" style="--width: 95%"></div>
           </div>
         </div>
       </div>
@@ -920,26 +972,28 @@
       
       <div class="project-card reveal">
         <div class="project-image portfolio">
-          <img src="images/portfolio-web.png" alt="Boho Jewelry Store">
-          Developer Portfolio
+          <img src="images/website.jpg" alt="researchwebsite">
+          Research Portfolio & CMS
         </div>
         <div class="project-content">
-          <h3>Developer Portfolio</h3>
+          <h3>Research Portfolio & CMS</h3>
           <p>
-            A personal portfolio website showcasing my skills, projects, and professional journey. 
-            Built with clean code principles and modern design patterns, featuring smooth animations 
-            and an intuitive user experience.
+            A professional research portfolio redesigned and extended with a custom content management system.
+             Improved the website’s UI, responsiveness, research article experience, and Markdown/KaTeX rendering,
+              while integrating Decap CMS with GitHub authentication for easy article publishing, editing, and media management.
           </p>
           <div class="tech-stack">
-            <span class="tech-tag">HTML</span>
-            <span class="tech-tag">CSS</span>
-            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Decap CMS</span>
             <span class="tech-tag">UI/UX</span>
+            <span class="tech-tag">Markdown</span>
+            <span class="tech-tag">KaTeX</span>
+            <span class="tech-tag">JavaScript</span>
           </div>
           <div class="project-links">
            
-            <a href="https://github.com/douriemdev/douriem-dev-portfolio.git" class="project-link primary" target="_blank">GitHub</a>
-            <a href="https://douriemportfolio.netlify.app/" class="project-link secondary" target="_blank">Live Demo</a>
+            <a href="https://github.com/daoudizakaria/website" class="project-link primary" target="_blank">GitHub</a>
+            <a href="https://daoudizakaria.github.io/website/" class="project-link secondary" target="_blank">Live Demo</a>
           </div>
         </div>
       </div>
@@ -1013,12 +1067,12 @@
     </div>
     <div class="contact-content">
       <p class="contact-text">
-        I'm always open to new opportunities, collaborations, and conversations about web development. 
+        I'm always open to new opportunities and collaborationsations.
         Whether you have a project in mind or just want to connect, feel free to reach out!
       </p>
       <div class="contact-buttons">
         
-        <a href="https://github.com/douriemdev" class="contact-btn github" target="_blank">
+        <a href="https://github.com/Douriem" class="contact-btn github" target="_blank">
           <span>GitHub</span>
         </a>
         
@@ -1035,11 +1089,42 @@
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2026 Douriem Dev. Designed & Built with passion.</p>
-    <p>Made with HTML, CSS & JavaScript</p>
+    <p>&copy; 2025 Douriem Dev. Designed & Built with passion.</p>
   </footer>
 
   <!-- JavaScript -->
+  <script>
+    tsParticles.load("tsparticles", {
+      particles: {
+        number: { value: 50 },
+        color: { value: "#6366f1" },
+        opacity: { value: 0.3 },
+        size: { value: 2 },
+        move: { enable: true, speed: 0.6 },
+        links: {
+          enable: true,
+          distance: 140,
+          color: "#8b5cf6",
+          opacity: 0.3
+        }
+      },
+      interactivity: {
+        detectsOn: "window",
+        events: {
+          onHover: {
+            enable: true,
+            mode: "repulse"
+          }
+        },
+        modes: {
+          repulse: {
+            distance: 120
+          }
+        }
+      }
+    });
+  </script>
+
   <script>
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');
@@ -1142,6 +1227,64 @@
       document.querySelectorAll('.cta-buttons .btn')[0].textContent = translations[lang].btnProjects;
       document.querySelectorAll('.cta-buttons .btn')[1].textContent = translations[lang].btnContact;
     });
+   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const navLinks = document.querySelector('.nav-links');
+const langToggles = document.querySelectorAll('.lang-toggle');
+
+// Mobile menu toggle
+mobileMenuBtn.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+  mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+});
+
+// Close menu when clicking nav links
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+    mobileMenuBtn.textContent = '☰';
+  });
+});
+
+// Language toggle functionality
+let currentLang = 'fr';
+
+langToggles.forEach(toggle => {
+  toggle.addEventListener('click', () => {
+    if (currentLang === 'fr') {
+      currentLang = 'en';
+      langToggles.forEach(btn => btn.textContent = '🇬🇧 EN');
+      translateToEnglish();
+    } else {
+      currentLang = 'fr';
+      langToggles.forEach(btn => btn.textContent = '🇫🇷 FR');
+      translateToFrench();
+    }
+  });
+});
+
+function translateToEnglish() {
+  // Update nav links
+  document.querySelector('a[href="#about"]').textContent = 'About';
+  document.querySelector('a[href="#skills"]').textContent = 'Skills';
+  document.querySelector('a[href="#projects"]').textContent = 'Projects';
+  document.querySelector('a[href="#contact"]').textContent = 'Contact';
+  
+  // Add more translations here for other sections
+  // Example:
+  // document.querySelector('#about h2').textContent = 'About Me';
+}
+
+function translateToFrench() {
+  // Update nav links
+  document.querySelector('a[href="#about"]').textContent = 'À propos';
+  document.querySelector('a[href="#skills"]').textContent = 'Compétences';
+  document.querySelector('a[href="#projects"]').textContent = 'Projets';
+  document.querySelector('a[href="#contact"]').textContent = 'Contact';
+  
+  // Add more translations here
+  // Example:
+  // document.querySelector('#about h2').textContent = 'À Propos de Moi';
+}
   </script>
 </body>
 </html>
