@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Douriem Dev | Design-driven Frontend Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta name="description" content="Portfolio of Meriem Zemik (Douriem), a web developer and designer building modern, responsive websites: e-commerce, creative platforms and content-managed sites.">
+  <meta name="author" content="Meriem Zemik">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Douriem Dev | Web Developer & Designer">
+  <meta property="og:description" content="Modern, responsive websites that combine thoughtful design with functional, maintainable code.">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#6366f1">
+  <script>
+    // Dark is the default; respect a saved choice before the page paints
+    try {
+      if (localStorage.getItem('theme') === 'light') document.documentElement.dataset.theme = 'light';
+    } catch (e) {}
+  </script>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #6366f1;
@@ -17,6 +31,34 @@
       --bg-alt: #f8fafc;
       --border: #e2e8f0;
       --shadow: rgba(99, 102, 241, 0.1);
+      --surface: #ffffff;
+      --nav-bg: rgba(255, 255, 255, 0.95);
+      --hero-bg: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      --footer-bg: #1e293b;
+      --card-shadow: rgba(0, 0, 0, 0.05);
+      color-scheme: light;
+    }
+
+    :root[data-theme="dark"] {
+      --primary: #818cf8;
+      --primary-dark: #6366f1;
+      --secondary: #a78bfa;
+      --text: #e2e8f0;
+      --text-light: #94a3b8;
+      --bg: #0b1020;
+      --bg-alt: #10162a;
+      --border: #232c47;
+      --shadow: rgba(129, 140, 248, 0.18);
+      --surface: #151c33;
+      --nav-bg: rgba(11, 16, 32, 0.88);
+      --hero-bg: linear-gradient(135deg, #0b1020 0%, #141a35 100%);
+      --footer-bg: #070a14;
+      --card-shadow: rgba(0, 0, 0, 0.35);
+      color-scheme: dark;
+    }
+
+    body, nav, section, .skill-card, .project-card, .about-content, footer {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     }
 
     * {
@@ -54,7 +96,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.95);
+      background: var(--nav-bg);
       backdrop-filter: blur(10px);
       z-index: 1000;
       border-bottom: 1px solid var(--border);
@@ -74,13 +116,40 @@
       align-items: center;
     }
 
+    /* Signature logo with a blinking terminal cursor */
     .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: inline-flex;
+      align-items: flex-end;
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .logo-sig {
+      font-family: 'Monsieur La Doulaise', cursive;
+      font-size: 2.3rem;
+      font-weight: 400;
+      padding: 0 0.15em 0.1em 0.1em;
+      background: linear-gradient(120deg, var(--primary), var(--secondary) 55%, var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+
+    .logo-cursor {
+      width: 0.3rem;
+      height: 1.2rem;
+      margin: 0 0 0.55rem 0.15rem;
+      border-radius: 2px;
+      background: var(--accent);
+      animation: cursor-blink 1.1s steps(1) infinite;
+    }
+
+    @keyframes cursor-blink {
+      50% { opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo-cursor { animation: none; }
     }
 
     .nav-links {
@@ -123,7 +192,7 @@
       align-items: center;
       justify-content: center;
       padding: 6rem 2rem 4rem;
-      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      background: var(--hero-bg);
       position: relative;
       overflow: hidden;
     }
@@ -238,7 +307,7 @@
     }
 
     .btn-secondary {
-      background: white;
+      background: var(--surface);
       color: var(--primary);
       border: 2px solid var(--primary);
     }
@@ -286,10 +355,10 @@
     .about-content {
       max-width: 800px;
       margin: 0 auto;
-      background: white;
+      background: var(--surface);
       padding: 3rem;
       border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 10px 40px var(--card-shadow);
       border: 1px solid var(--border);
     }
 
@@ -318,10 +387,10 @@
     }
 
     .skill-card {
-      background: white;
+      background: var(--surface);
       padding: 2rem;
       border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 20px var(--card-shadow);
       border: 1px solid var(--border);
       transition: all 0.3s ease;
     }
@@ -350,43 +419,9 @@
 
     .skill-list {
       color: var(--text-light);
-      margin-bottom: 1.5rem;
       line-height: 1.8;
     }
 
-    .progress-container {
-      margin-bottom: 0.5rem;
-    }
-
-    .progress-label {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.5rem;
-      font-size: 0.875rem;
-      color: var(--text-light);
-      font-weight: 500;
-    }
-
-    .progress-bar {
-      height: 8px;
-      background: var(--bg-alt);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      border-radius: 10px;
-      transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-      width: 0;
-    }
-
-    .progress-fill.animate {
-      width: var(--width);
-    }
-
-    
     .reveal {
       opacity: 0;
       transform: translateY(40px);
@@ -406,10 +441,10 @@
     }
 
     .project-card {
-      background: white;
+      background: var(--surface);
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 20px var(--card-shadow);
       border: 1px solid var(--border);
       transition: all 0.3s ease;
       display: flex;
@@ -464,6 +499,33 @@
 
     .project-card:hover .project-image::before {
       background: rgba(0, 0, 0, 0);
+    }
+
+    .project-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .project-badges .project-badge {
+      align-self: auto;
+    }
+
+    .project-badge {
+      display: inline-block;
+      align-self: flex-start;
+      margin-bottom: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      color: var(--primary-dark);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .project-image.parts {
+      background: linear-gradient(135deg, #facc15 0%, #1f2937 100%);
     }
 
     .project-image.jewelry {
@@ -552,7 +614,7 @@
     }
 
     .project-link.secondary:hover {
-      background: white;
+      background: var(--surface);
       border-color: var(--primary);
       transform: translateY(-2px);
     }
@@ -598,6 +660,7 @@
     .contact-btn.github {
       background: #24292e;
       color: white;
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
     .contact-btn.github:hover {
@@ -629,7 +692,7 @@
 
     
     footer {
-      background: var(--text);
+      background: var(--footer-bg);
       color: white;
       text-align: center;
       padding: 2rem;
@@ -671,22 +734,111 @@
       border-color: var(--primary);
     }
 
-  @media (max-width: 768px) {
-   .nav-links {
-      display: none;
+    .nav-links {
+      align-items: center;
     }
 
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Day/night switch: a little sky with a sun or moon knob */
+    .theme-toggle {
+      position: relative;
+      width: 58px;
+      height: 30px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, #7dd3fc, #fbcfe8);
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+      transition: background 0.4s ease, border-color 0.3s ease;
+    }
+
+    .theme-toggle::before,
+    .theme-toggle::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: #fff;
+      transition: opacity 0.4s ease;
+    }
+
+    /* tiny stars, only visible at night */
+    .theme-toggle::before { width: 3px; height: 3px; top: 8px; left: 12px; box-shadow: 8px 9px 0 -0.5px #fff, 16px 2px 0 -1px #fff; opacity: 0; }
+    .theme-toggle::after { display: none; }
+
+    .theme-toggle .knob {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #fde047;
+      box-shadow: 0 0 10px rgba(253, 224, 71, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      line-height: 1;
+      transition: transform 0.4s cubic-bezier(0.68, -0.4, 0.27, 1.4), background 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    :root[data-theme="dark"] .theme-toggle {
+      background: linear-gradient(135deg, #1e1b4b, #4c1d95);
+    }
+
+    :root[data-theme="dark"] .theme-toggle::before { opacity: 0.9; }
+
+    :root[data-theme="dark"] .theme-toggle .knob {
+      transform: translateX(28px);
+      background: #e2e8f0;
+      box-shadow: inset -5px -2px 0 0 #cbd5e1, 0 0 10px rgba(226, 232, 240, 0.5);
+    }
+
+    .theme-toggle:hover .knob {
+      transform: scale(1.08);
+    }
+
+    :root[data-theme="dark"] .theme-toggle:hover .knob {
+      transform: translateX(28px) scale(1.08);
+    }
+
+    .theme-toggle:focus-visible,
+    .lang-toggle:focus-visible,
+    .mobile-menu-btn:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+    }
+
+    .menu-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 8, 20, 0.45);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s;
+      z-index: 999;
+    }
+
+    .menu-backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+  @media (max-width: 768px) {
   .mobile-menu-btn {
       display: block;
-    }
-
-   .lang-toggle {
-      display: none;
-   }
-
-    .nav-container.menu-open .lang-toggle {
-    display: block;
-    margin-top: 1rem;
     }
 
     .hero {
@@ -784,24 +936,34 @@
 @media (max-width: 768px) {
   .nav-links {
     position: fixed;
-    left: -100%;
-    top: 60px;
+    top: 100%;
+    right: 0;
+    width: 50%;
+    min-width: 200px;
+    height: 100vh;
+    height: 100dvh;
     flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
     background-color: var(--bg);
-    width: 100%;
     text-align: center;
-    transition: left 0.3s ease;
-    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-    padding: 2rem 0;
+    transform: translateX(100%);
+    transition: transform 0.3s ease, visibility 0.3s;
+    visibility: hidden;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
+    border-left: 1px solid var(--border);
+    padding: 1.5rem 1rem;
     z-index: 99;
   }
 
   .nav-links.active {
-    left: 0;
+    transform: translateX(0);
+    visibility: visible;
   }
 
   .nav-links li {
-    margin: 1.5rem 0;
+    margin: 0.9rem 0;
   }
 
   .mobile-lang {
@@ -813,7 +975,7 @@
   }
 }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2/tsparticles.slim.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.12.0/tsparticles.slim.bundle.min.js"></script>
 </head>
 <body>
   <div id="tsparticles"></div>
@@ -821,35 +983,37 @@
   <!-- Navigation -->
   <nav id="navbar">
   <div class="nav-container">
-    <div class="logo">Douriem</div>
+    <a href="#top" class="logo" aria-label="Douriem, back to top"><span class="logo-sig">Douriem</span><span class="logo-cursor" aria-hidden="true"></span></a>
     
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-i18n="navAbout">About</a></li>
+      <li><a href="#skills" data-i18n="navSkills">Skills</a></li>
+      <li><a href="#projects" data-i18n="navProjects">Projects</a></li>
+      <li><a href="#contact" data-i18n="navContact">Contact</a></li>
       <li class="mobile-lang"><button class="lang-toggle">🇫🇷 FR</button></li>
+      <li><button class="theme-toggle" type="button" aria-label="Switch to light mode"><span class="knob" aria-hidden="true"></span></button></li>
     </ul>
-    
+
     <button class="lang-toggle desktop-lang">🇫🇷 FR</button>
-    <button class="mobile-menu-btn">☰</button>
+    <button class="mobile-menu-btn" aria-label="Open menu">☰</button>
   </div>
 </nav>
-  </nav>
+  <div class="menu-backdrop" aria-hidden="true"></div>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" id="top">
     <div class="hero-content">
-      <span class="hero-label">👋 Welcome to my portfolio</span>
-      <h1>
+      <span class="hero-label" data-i18n="heroLabel">👋 Welcome to my portfolio</span>
+      <h1 data-i18n="heroTitle">
         <span class="gradient-text">Web Developer</span><br>
         & Designer
       </h1>
-      <p>
+      <p data-i18n="heroDesc">
         I create modern, responsive websites that combine thoughtful design with functional, maintainable code.
+      </p>
       <div class="cta-buttons">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        <a href="#projects" class="btn btn-primary" data-i18n="btnProjects">View Projects</a>
+        <a href="#contact" class="btn btn-secondary" data-i18n="btnContact">Contact Me</a>
       </div>
     </div>
   </section>
@@ -857,17 +1021,18 @@
   <!-- About Section -->
   <section id="about" class="reveal">
     <div class="section-header">
-      <div class="section-label">About Me</div>
-      <h2 class="section-title">Building the Web, One Project at a Time</h2>
+      <div class="section-label" data-i18n="aboutLabel">About Me</div>
+      <h2 class="section-title" data-i18n="aboutTitle">Building the Web, One Project at a Time</h2>
     </div>
     <div class="about-content">
-      <p>
+      <p data-i18n="about1">
         I'm a developer focused on creating thoughtful digital products that bring together design, technology, and functionality. Over the past year, I've worked across a range of projects, from e-commerce and creative platforms to professional websites, portfolio systems, and content management solutions.
-
-My experience spans frontend development, UI/UX, responsive web design, content management, authentication, deployment, and the integration of modern web technologies. I work across different tools and technologies depending on what a project requires, with a focus on building interfaces that are clear, reliable, and purposeful.
-
-I enjoy taking an idea from its initial structure through development and refinement, solving the technical problems that appear along the way, and turning it into something people can actually use. Each project has pushed me to understand not just how to build a website, but how the different pieces of a digital product work together.
-
+      </p>
+      <p data-i18n="about2">
+        My experience spans frontend development, UI/UX, responsive web design, content management, authentication, and deployment. I choose tools based on what each project needs, with a focus on building interfaces that are clear, reliable, and purposeful.
+      </p>
+      <p data-i18n="about3">
+        I enjoy taking an idea from its first structure all the way to something people can actually use, solving the technical problems that come up along the way. Each project has taught me not just how to build a website, but how the pieces of a digital product fit together.
       </p>
     </div>
   </section>
@@ -875,57 +1040,30 @@ I enjoy taking an idea from its initial structure through development and refine
   <!-- Skills Section -->
   <section id="skills">
     <div class="section-header">
-      <div class="section-label">Skills</div>
-      <h2 class="section-title">What I Bring to the Table</h2>
+      <div class="section-label" data-i18n="skillsLabel">Skills</div>
+      <h2 class="section-title" data-i18n="skillsTitle">What I Bring to the Table</h2>
     </div>
     <div class="skills-grid">
-      
+
       <!-- Frontend Skills -->
       <div class="skill-card reveal">
         <div class="skill-icon">💻</div>
-        <h3>Frontend Development</h3>
-        <p class="skill-list">HTML5, CSS3, JavaScript (ES6+), Responsive Design, React (learning)</p>
-        <div class="progress-container">
-          <div class="progress-label">
-            <span>Proficiency</span>
-            <span>80%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-fill" style="--width: 80%"></div>
-          </div>
-        </div>
+        <h3 data-i18n="skillFrontTitle">Frontend Development</h3>
+        <p class="skill-list" data-i18n="skillFront">HTML5, CSS3, JavaScript (ES6+), Responsive Design, React (learning)</p>
       </div>
 
       <!-- Python & Backend -->
       <div class="skill-card reveal">
         <div class="skill-icon">🐍</div>
-        <h3>Python & Backend</h3>
-        <p class="skill-list">Python fundamentals, Flask (learning), Basic API integration, Data structures</p>
-        <div class="progress-container">
-          <div class="progress-label">
-            <span>Proficiency</span>
-            <span>55%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-fill" style="--width: 55%"></div>
-          </div>
-        </div>
+        <h3 data-i18n="skillPyTitle">Python & Backend</h3>
+        <p class="skill-list" data-i18n="skillPy">Python fundamentals, Flask (learning), Basic API integration, Data structures</p>
       </div>
 
       <!-- Tools & Workflow -->
       <div class="skill-card reveal">
         <div class="skill-icon">🛠️</div>
-        <h3>Tools & Workflow</h3>
-        <p class="skill-list">Git & GitHub, VS Code, Chrome DevTools, Figma, Command Line, Deployment (Netlify, GitHub Pages), NPM, Responsive Testing</p>
-        <div class="progress-container">
-          <div class="progress-label">
-            <span>Proficiency</span>
-            <span>95%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-fill" style="--width: 95%"></div>
-          </div>
-        </div>
+        <h3 data-i18n="skillToolsTitle">Tools & Workflow</h3>
+        <p class="skill-list" data-i18n="skillTools">Git & GitHub, VS Code, Chrome DevTools, Figma, Command Line, Deployment (Netlify, GitHub Pages), NPM, Responsive Testing</p>
       </div>
 
     </div>
@@ -934,23 +1072,55 @@ I enjoy taking an idea from its initial structure through development and refine
   <!-- Projects Section -->
   <section id="projects">
     <div class="section-header">
-      <div class="section-label">Portfolio</div>
-      <h2 class="section-title">Featured Projects</h2>
-      <p class="section-description">
+      <div class="section-label" data-i18n="projectsLabel">Portfolio</div>
+      <h2 class="section-title" data-i18n="projectsTitle">Featured Projects</h2>
+      <p class="section-description" data-i18n="projectsDesc">
         A selection of projects showcasing my approach to web development—from concept to deployment.
       </p>
     </div>
     <div class="projects-grid">
 
-      <!-- Project 1: Boho Jewelry Store -->
+      <!-- Project: Toumoubilti -->
       <div class="project-card reveal">
-        <div class="project-image jewelry">
-          <img src="images/juryam-web.png" alt="Boho Jewelry Store">
-          Boho Jewelry Store
+        <div class="project-image parts">
+          <img src="images/toumoubilti-web.jpg" alt="Toumoubilti car parts marketplace homepage">
+          Toumoubilti
         </div>
         <div class="project-content">
-          <h3>Boho Jewelry Store</h3>
-          <p>
+          <div class="project-badges">
+            <span class="project-badge" data-i18n="clientBadge">Client project</span>
+            <span class="project-badge" data-i18n="collabBadge">Collaboration</span>
+          </div>
+          <h3 data-i18n="toumTitle">Toumoubilti – Car Parts Marketplace</h3>
+          <p data-i18n="toumDesc">
+            A full e-commerce marketplace for car parts in Algeria. Shoppers pick their brand, model, year
+            and engine, or enter their VIN, to see only parts that fit their car, then order in under a minute
+            with no account and pay cash on delivery in all 69 wilayas. Sellers can sign up and list their own
+            parts, and the whole site works in Arabic, French and English.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Vite</span>
+            <span class="tech-tag">E-commerce</span>
+            <span class="tech-tag">Marketplace</span>
+            <span class="tech-tag">AR / FR / EN</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/itsnotthatrandom/toumoubilti" class="project-link primary" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://tw3nty8.net/" class="project-link secondary" target="_blank" rel="noopener" data-i18n="visitSite">Visit Site</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 1: Juryam -->
+      <div class="project-card reveal">
+        <div class="project-image jewelry">
+          <img src="images/juryam-web.jpg" alt="Juryam jewelry store homepage">
+          Juryam
+        </div>
+        <div class="project-content">
+          <h3 data-i18n="juryamTitle">Juryam – Boho Jewelry Store</h3>
+          <p data-i18n="juryamDesc">
             A modern e-commerce website inspired by bohemian and hippie aesthetics. Features product 
             galleries, shopping cart functionality, and a fully responsive design that captures the 
             free-spirited vibe of artisan jewelry.
@@ -962,9 +1132,8 @@ I enjoy taking an idea from its initial structure through development and refine
             <span class="tech-tag">Responsive</span>
           </div>
           <div class="project-links">
-            
-            <a href="https://github.com/douriemdev/juryam" class="project-link primary" target="_blank">GitHub</a>
-            <a href="https://juryam.netlify.app/" class="project-link secondary" target="_blank">Live Demo</a>
+            <a href="https://github.com/Douriem/juryam-store" class="project-link primary" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://juryam.com/" class="project-link secondary" target="_blank" rel="noopener" data-i18n="visitSite">Visit Site</a>
           </div>
         </div>
       </div>
@@ -972,12 +1141,13 @@ I enjoy taking an idea from its initial structure through development and refine
       
       <div class="project-card reveal">
         <div class="project-image portfolio">
-          <img src="images/website.jpg" alt="researchwebsite">
+          <img src="images/website.jpg" alt="Research portfolio website homepage">
           Research Portfolio & CMS
         </div>
         <div class="project-content">
-          <h3>Research Portfolio & CMS</h3>
-          <p>
+          <span class="project-badge" data-i18n="clientBadge">Client project</span>
+          <h3 data-i18n="researchTitle">Research Portfolio & CMS</h3>
+          <p data-i18n="researchDesc">
             A professional research portfolio redesigned and extended with a custom content management system.
              Improved the website’s UI, responsiveness, research article experience, and Markdown/KaTeX rendering,
               while integrating Decap CMS with GitHub authentication for easy article publishing, editing, and media management.
@@ -991,9 +1161,8 @@ I enjoy taking an idea from its initial structure through development and refine
             <span class="tech-tag">JavaScript</span>
           </div>
           <div class="project-links">
-           
-            <a href="https://github.com/daoudizakaria/website" class="project-link primary" target="_blank">GitHub</a>
-            <a href="https://daoudizakaria.github.io/website/" class="project-link secondary" target="_blank">Live Demo</a>
+            <a href="https://github.com/daoudizakaria/website" class="project-link primary" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://daoudizakaria.github.io/website/" class="project-link secondary" target="_blank" rel="noopener" data-i18n="visitSite">Visit Site</a>
           </div>
         </div>
       </div>
@@ -1001,13 +1170,12 @@ I enjoy taking an idea from its initial structure through development and refine
      
       <div class="project-card reveal">
         <div class="project-image music">
-          <img src="images/noma-web.png" alt="Boho Jewelry Store">
-          
+          <img src="images/noma-web.jpg" alt="Noma music concept homepage">
           Noma Music Concept
         </div>
         <div class="project-content">
-          <h3>Noma Music Concept</h3>
-          <p>
+          <h3 data-i18n="nomaTitle">Noma Music Concept</h3>
+          <p data-i18n="nomaDesc">
             Transformed an original music streaming idea into a working digital concept. Designed the 
             complete user flow, visual identity, and interface architecture for an immersive music 
             experience platform. A case study in translating abstract ideas into structured web design.
@@ -1020,9 +1188,8 @@ I enjoy taking an idea from its initial structure through development and refine
             <span class="tech-tag">UI Design</span>
           </div>
           <div class="project-links">
-            
-            <a href="https://github.com/douriemdev/Music-Concept-Website" class="project-link primary" target="_blank">GitHub</a>
-            <a href="https://nomatribe.netlify.app/" class="project-link secondary" target="_blank">Live Demo</a>
+            <a href="https://github.com/Douriem/noma-website" class="project-link primary" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://nomatribe.netlify.app/" class="project-link secondary" target="_blank" rel="noopener" data-i18n="liveDemo">Live Demo</a>
           </div>
         </div>
       </div>
@@ -1030,13 +1197,13 @@ I enjoy taking an idea from its initial structure through development and refine
       
       <div class="project-card reveal">
         <div class="project-image author">
-          <img src="images/blu-web.png" alt="Boho Jewelry Store">
-          <
+          <img src="images/blu-web.jpg" alt="Blu author website homepage">
           Blu - Author & Thought Leader
         </div>
         <div class="project-content">
-          <h3>Blu – Author & Thought Leader</h3>
-          <p>
+          <span class="project-badge" data-i18n="conceptBadge">Early-stage concept</span>
+          <h3 data-i18n="bluTitle">Blu – Author & Thought Leader</h3>
+          <p data-i18n="bluDesc">
             Where clarity meets strength. A premium digital presence for an author and thought leader 
             focused on transformation, mindset, and elevated leadership. Minimal design language 
             paired with poetic messaging creates a calm authority that invites readers into a space 
@@ -1049,9 +1216,7 @@ I enjoy taking an idea from its initial structure through development and refine
             <span class="tech-tag">Minimalism</span>
           </div>
           <div class="project-links">
-            
-            <a href="https://github.com/douriemdev/blu-site" class="project-link primary" target="_blank">GitHub</a>
-            <a href="https://blu-wellbeing.netlify.app/" class="project-link secondary" target="_blank">Live Demo</a>
+            <a href="https://blu-wellbeing.netlify.app/" class="project-link secondary" target="_blank" rel="noopener" data-i18n="viewPrototype">View Prototype</a>
           </div>
         </div>
       </div>
@@ -1062,12 +1227,12 @@ I enjoy taking an idea from its initial structure through development and refine
   
   <section id="contact" class="reveal">
     <div class="section-header">
-      <div class="section-label">Get in Touch</div>
-      <h2 class="section-title">Let's Build Something Together</h2>
+      <div class="section-label" data-i18n="contactLabel">Get in Touch</div>
+      <h2 class="section-title" data-i18n="contactTitle">Let's Build Something Together</h2>
     </div>
     <div class="contact-content">
-      <p class="contact-text">
-        I'm always open to new opportunities and collaborationsations.
+      <p class="contact-text" data-i18n="contactText">
+        I'm always open to new opportunities and collaborations.
         Whether you have a project in mind or just want to connect, feel free to reach out!
       </p>
       <div class="contact-buttons">
@@ -1081,7 +1246,7 @@ I enjoy taking an idea from its initial structure through development and refine
         </a>
         
         <a href="mailto:meriem.zemik@gmail.com" class="contact-btn email">
-          <span>Email Me</span>
+          <span data-i18n="emailMe">Email Me</span>
         </a>
       </div>
     </div>
@@ -1089,7 +1254,7 @@ I enjoy taking an idea from its initial structure through development and refine
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Douriem Dev. Designed & Built with passion.</p>
+    <p>&copy; <span id="year">2026</span> Douriem Dev. <span data-i18n="footer">Designed & Built with passion.</span></p>
   </footer>
 
   <!-- JavaScript -->
@@ -1136,7 +1301,7 @@ I enjoy taking an idea from its initial structure through development and refine
       }
     });
 
-    
+    // Smooth scroll for in-page links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -1150,27 +1315,7 @@ I enjoy taking an idea from its initial structure through development and refine
       });
     });
 
-    
-    const observerOptions = {
-      threshold: 0.5,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.progress-fill').forEach(bar => {
-            bar.classList.add('animate');
-          });
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.skill-card').forEach(card => {
-      observer.observe(card);
-    });
-
-    
+    // Reveal sections on scroll
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1187,104 +1332,128 @@ I enjoy taking an idea from its initial structure through development and refine
       revealObserver.observe(element);
     });
 
-    
-    const langToggle = document.querySelector('.lang-toggle');
-    let isFrench = false;
+    // Mobile menu toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
 
-    const translations = {
-      en: {
-        nav: ['About', 'Skills', 'Projects', 'Contact'],
-        heroLabel: '👋 Welcome to my portfolio',
-        heroTitle: '<span class="gradient-text">Design-driven</span><br>Frontend Developer',
-        heroDesc: 'I craft clean, intuitive web experiences that blend aesthetic design with functional code. Specializing in turning creative concepts into responsive, user-friendly digital products.',
-        btnProjects: 'View Projects',
-        btnContact: 'Contact Me'
-      },
-      fr: {
-        nav: ['À propos', 'Compétences', 'Projets', 'Contact'],
-        heroLabel: '👋 Bienvenue sur mon portfolio',
-        heroTitle: '<span class="gradient-text">Développeur Frontend</span><br>axé sur le design',
-        heroDesc: 'Je crée des expériences web élégantes et intuitives qui allient design esthétique et code fonctionnel. Spécialisé dans la transformation de concepts créatifs en produits numériques réactifs et conviviaux.',
-        btnProjects: 'Voir les projets',
-        btnContact: 'Me contacter'
-      }
+    const menuBackdrop = document.querySelector('.menu-backdrop');
+
+    function setMenuOpen(open) {
+      navLinks.classList.toggle('active', open);
+      menuBackdrop.classList.toggle('active', open);
+      document.body.classList.toggle('menu-open', open);
+      mobileMenuBtn.textContent = open ? '✕' : '☰';
+      mobileMenuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+
+    mobileMenuBtn.addEventListener('click', () => {
+      setMenuOpen(!navLinks.classList.contains('active'));
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => setMenuOpen(false));
+    });
+
+    menuBackdrop.addEventListener('click', () => setMenuOpen(false));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    });
+
+    // Light/dark switch (dark by default, choice remembered)
+    const themeToggle = document.querySelector('.theme-toggle');
+
+    function updateThemeToggle() {
+      const dark = document.documentElement.dataset.theme === 'dark';
+      themeToggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      themeToggle.title = dark ? 'Light mode' : 'Dark mode';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      updateThemeToggle();
+    });
+    updateThemeToggle();
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Language toggle: English comes from the HTML, French from this table
+    const fr = {
+      navAbout: 'À propos',
+      navSkills: 'Compétences',
+      navProjects: 'Projets',
+      navContact: 'Contact',
+      heroLabel: '👋 Bienvenue sur mon portfolio',
+      heroTitle: '<span class="gradient-text">Développement Web</span><br>& Design',
+      heroDesc: 'Je crée des sites web modernes et responsives qui allient un design réfléchi à un code fonctionnel et facile à maintenir.',
+      btnProjects: 'Voir les projets',
+      btnContact: 'Me contacter',
+      aboutLabel: 'À propos de moi',
+      aboutTitle: 'Construire le web, un projet à la fois',
+      about1: 'Je crée des produits numériques réfléchis qui réunissent design, technologie et fonctionnalité. Au cours de l’année passée, j’ai travaillé sur des projets variés : e-commerce, plateformes créatives, sites professionnels, portfolios et systèmes de gestion de contenu.',
+      about2: 'Mon expérience couvre le développement frontend, l’UI/UX, le design responsive, la gestion de contenu, l’authentification et le déploiement. Je choisis mes outils selon les besoins de chaque projet, avec pour objectif des interfaces claires, fiables et utiles.',
+      about3: 'J’aime faire passer une idée de sa première structure à quelque chose que les gens peuvent vraiment utiliser, en résolvant les problèmes techniques en chemin. Chaque projet m’a appris non seulement à construire un site, mais aussi comment les différentes pièces d’un produit numérique s’assemblent.',
+      skillsLabel: 'Compétences',
+      skillsTitle: 'Ce que j’apporte',
+      skillFrontTitle: 'Développement Frontend',
+      skillFront: 'HTML5, CSS3, JavaScript (ES6+), Design responsive, React (en apprentissage)',
+      skillPyTitle: 'Python & Backend',
+      skillPy: 'Bases de Python, Flask (en apprentissage), Intégration d’API, Structures de données',
+      skillToolsTitle: 'Outils & Méthodes',
+      skillTools: 'Git & GitHub, VS Code, Chrome DevTools, Figma, Ligne de commande, Déploiement (Netlify, GitHub Pages), NPM, Tests responsive',
+      projectsLabel: 'Portfolio',
+      projectsTitle: 'Projets phares',
+      projectsDesc: 'Une sélection de projets qui montrent ma façon de travailler, de l’idée au déploiement.',
+      toumTitle: 'Toumoubilti – Marketplace de pièces auto',
+      toumDesc: 'Une marketplace e-commerce complète de pièces automobiles en Algérie. Le client choisit sa marque, son modèle, son année et sa motorisation, ou saisit son numéro VIN, pour ne voir que les pièces compatibles, puis commande en moins d’une minute sans compte et paie à la livraison dans les 69 wilayas. Les vendeurs peuvent s’inscrire et publier leurs propres pièces, et tout le site fonctionne en arabe, en français et en anglais.',
+      juryamTitle: 'Juryam – Bijouterie Bohème',
+      juryamDesc: 'Une boutique en ligne moderne inspirée de l’esthétique bohème et hippie. Galeries de produits, panier d’achat et design entièrement responsive qui capture l’esprit libre des bijoux artisanaux.',
+      researchTitle: 'Portfolio de recherche & CMS',
+      researchDesc: 'Un portfolio de recherche professionnel repensé et enrichi d’un système de gestion de contenu. Amélioration de l’interface, du responsive, de la lecture des articles et du rendu Markdown/KaTeX, avec l’intégration de Decap CMS et d’une authentification GitHub pour publier, modifier et gérer les médias facilement.',
+      nomaTitle: 'Noma – Concept musical',
+      nomaDesc: 'Une idée originale de streaming musical transformée en concept numérique fonctionnel. Conception du parcours utilisateur, de l’identité visuelle et de l’architecture de l’interface pour une expérience musicale immersive.',
+      bluTitle: 'Blu – Écriture & Leadership',
+      bluDesc: 'Là où la clarté rencontre la force. Une présence numérique haut de gamme pour une voix engagée dans la transformation, l’état d’esprit et le leadership. Un design minimaliste et des messages poétiques créent une autorité calme qui invite à la croissance.',
+      clientBadge: 'Projet client',
+      collabBadge: 'Collaboration',
+      conceptBadge: 'Concept en phase initiale',
+      viewPrototype: 'Voir le prototype',
+      visitSite: 'Voir le site',
+      liveDemo: 'Démo',
+      contactLabel: 'Contact',
+      contactTitle: 'Construisons quelque chose ensemble',
+      contactText: 'Je reste toujours à l’écoute de nouvelles opportunités et collaborations. Que vous ayez un projet en tête ou que vous souhaitiez simplement échanger, n’hésitez pas à me contacter !',
+      emailMe: 'M’écrire',
+      footer: 'Conçu et développé avec passion.'
     };
 
-    langToggle.addEventListener('click', () => {
-      isFrench = !isFrench;
-      const lang = isFrench ? 'fr' : 'en';
-      langToggle.textContent = isFrench ? '🇬🇧 EN' : '🇫🇷 FR';
+    const i18nElements = document.querySelectorAll('[data-i18n]');
+    i18nElements.forEach(el => { el.dataset.en = el.innerHTML; });
 
-      
-      document.querySelectorAll('.nav-links a').forEach((link, i) => {
-        link.textContent = translations[lang].nav[i];
+    const langToggles = document.querySelectorAll('.lang-toggle');
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      i18nElements.forEach(el => {
+        const key = el.dataset.i18n;
+        el.innerHTML = lang === 'fr' && fr[key] ? fr[key] : el.dataset.en;
       });
-
-     
-      document.querySelector('.hero-label').textContent = translations[lang].heroLabel;
-      document.querySelector('.hero h1').innerHTML = translations[lang].heroTitle;
-      document.querySelector('.hero p').textContent = translations[lang].heroDesc;
-      document.querySelectorAll('.cta-buttons .btn')[0].textContent = translations[lang].btnProjects;
-      document.querySelectorAll('.cta-buttons .btn')[1].textContent = translations[lang].btnContact;
-    });
-   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-const navLinks = document.querySelector('.nav-links');
-const langToggles = document.querySelectorAll('.lang-toggle');
-
-// Mobile menu toggle
-mobileMenuBtn.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-  mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-});
-
-// Close menu when clicking nav links
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('active');
-    mobileMenuBtn.textContent = '☰';
-  });
-});
-
-// Language toggle functionality
-let currentLang = 'fr';
-
-langToggles.forEach(toggle => {
-  toggle.addEventListener('click', () => {
-    if (currentLang === 'fr') {
-      currentLang = 'en';
-      langToggles.forEach(btn => btn.textContent = '🇬🇧 EN');
-      translateToEnglish();
-    } else {
-      currentLang = 'fr';
-      langToggles.forEach(btn => btn.textContent = '🇫🇷 FR');
-      translateToFrench();
+      // The button offers the other language
+      langToggles.forEach(btn => {
+        btn.textContent = lang === 'fr' ? '🇬🇧 EN' : '🇫🇷 FR';
+      });
     }
-  });
-});
 
-function translateToEnglish() {
-  // Update nav links
-  document.querySelector('a[href="#about"]').textContent = 'About';
-  document.querySelector('a[href="#skills"]').textContent = 'Skills';
-  document.querySelector('a[href="#projects"]').textContent = 'Projects';
-  document.querySelector('a[href="#contact"]').textContent = 'Contact';
-  
-  // Add more translations here for other sections
-  // Example:
-  // document.querySelector('#about h2').textContent = 'About Me';
-}
-
-function translateToFrench() {
-  // Update nav links
-  document.querySelector('a[href="#about"]').textContent = 'À propos';
-  document.querySelector('a[href="#skills"]').textContent = 'Compétences';
-  document.querySelector('a[href="#projects"]').textContent = 'Projets';
-  document.querySelector('a[href="#contact"]').textContent = 'Contact';
-  
-  // Add more translations here
-  // Example:
-  // document.querySelector('#about h2').textContent = 'À Propos de Moi';
-}
+    langToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        setLanguage(currentLang === 'en' ? 'fr' : 'en');
+        setMenuOpen(false);
+      });
+    });
   </script>
 </body>
 </html>
