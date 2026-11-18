@@ -9,7 +9,14 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Douriem Dev | Web Developer & Designer">
   <meta property="og:description" content="Modern, responsive websites that combine thoughtful design with functional, maintainable code.">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:url" content="https://douriem.github.io/douriem-portfolio/">
+  <meta property="og:image" content="https://douriem.github.io/douriem-portfolio/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Douriem signature logo with the title Web Developer and Designer">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://douriem.github.io/douriem-portfolio/images/og-image.jpg">
+  <link rel="canonical" href="https://douriem.github.io/douriem-portfolio/">
   <meta name="theme-color" content="#6366f1">
   <script>
     // Dark is the default; respect a saved choice before the page paints
@@ -532,6 +539,10 @@
       background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     }
 
+    .project-image.ledger {
+      background: linear-gradient(135deg, #c8965a 0%, #0b0b0b 100%);
+    }
+
     .project-image.portfolio {
       background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     }
@@ -1049,14 +1060,14 @@
       <div class="skill-card reveal">
         <div class="skill-icon">💻</div>
         <h3 data-i18n="skillFrontTitle">Frontend Development</h3>
-        <p class="skill-list" data-i18n="skillFront">HTML5, CSS3, JavaScript (ES6+), Responsive Design, React (learning)</p>
+        <p class="skill-list" data-i18n="skillFront">HTML5, CSS3, JavaScript (ES6+), Responsive Design, SVG Data Visualization, React (learning)</p>
       </div>
 
       <!-- Python & Backend -->
       <div class="skill-card reveal">
         <div class="skill-icon">🐍</div>
         <h3 data-i18n="skillPyTitle">Python & Backend</h3>
-        <p class="skill-list" data-i18n="skillPy">Python fundamentals, Flask (learning), Basic API integration, Data structures</p>
+        <p class="skill-list" data-i18n="skillPy">Python fundamentals, SQL (SQLite), Firebase (Auth, Firestore), Flask (learning), Basic API integration, Data structures</p>
       </div>
 
       <!-- Tools & Workflow -->
@@ -1134,6 +1145,39 @@
           <div class="project-links">
             <a href="https://github.com/Douriem/juryam-store" class="project-link primary" target="_blank" rel="noopener">GitHub</a>
             <a href="https://juryam.com/" class="project-link secondary" target="_blank" rel="noopener" data-i18n="visitSite">Visit Site</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project: Juryam Ledger -->
+      <div class="project-card reveal">
+        <div class="project-image ledger">
+          <img src="images/juryam-ledger.jpg" alt="Juryam shop ledger dashboard showing profit, orders and sales">
+          Juryam Ledger
+        </div>
+        <div class="project-content">
+          <div class="project-badges">
+            <span class="project-badge" data-i18n="privateBadge">Private project</span>
+          </div>
+          <h3 data-i18n="ledgerTitle">Juryam Ledger – Business Dashboard</h3>
+          <p data-i18n="ledgerDesc">
+            A private finance and operations dashboard for my jewelry shop. It records orders, customers,
+            stock, purchases, ads and costs, then turns them into profit, margins, break-even, cash-flow and
+            product-profit charts drawn in SVG. Each account signs in with Google and only sees its own data,
+            stored in Firestore. It also has monthly goals, a weekly SWOT, backups, and a read-only SQL
+            console that queries the data with SQLite right in the browser.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Firebase Auth</span>
+            <span class="tech-tag">Firestore</span>
+            <span class="tech-tag">SQL / SQLite</span>
+            <span class="tech-tag">SVG Charts</span>
+            <span class="tech-tag">GitHub Pages</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Douriem/juryam-ledger" class="project-link primary" target="_blank" rel="noopener">GitHub</a>
+            <a href="#contact" class="project-link secondary" data-i18n="askDemo">Ask for a demo</a>
           </div>
         </div>
       </div>
@@ -1398,9 +1442,9 @@
       skillsLabel: 'Compétences',
       skillsTitle: 'Ce que j’apporte',
       skillFrontTitle: 'Développement Frontend',
-      skillFront: 'HTML5, CSS3, JavaScript (ES6+), Design responsive, React (en apprentissage)',
+      skillFront: 'HTML5, CSS3, JavaScript (ES6+), Design responsive, Visualisation de données en SVG, React (en apprentissage)',
       skillPyTitle: 'Python & Backend',
-      skillPy: 'Bases de Python, Flask (en apprentissage), Intégration d’API, Structures de données',
+      skillPy: 'Bases de Python, SQL (SQLite), Firebase (Auth, Firestore), Flask (en apprentissage), Intégration d’API, Structures de données',
       skillToolsTitle: 'Outils & Méthodes',
       skillTools: 'Git & GitHub, VS Code, Chrome DevTools, Figma, Ligne de commande, Déploiement (Netlify, GitHub Pages), NPM, Tests responsive',
       projectsLabel: 'Portfolio',
@@ -1410,6 +1454,8 @@
       toumDesc: 'Une marketplace e-commerce complète de pièces automobiles en Algérie. Le client choisit sa marque, son modèle, son année et sa motorisation, ou saisit son numéro VIN, pour ne voir que les pièces compatibles, puis commande en moins d’une minute sans compte et paie à la livraison dans les 69 wilayas. Les vendeurs peuvent s’inscrire et publier leurs propres pièces, et tout le site fonctionne en arabe, en français et en anglais.',
       juryamTitle: 'Juryam – Bijouterie Bohème',
       juryamDesc: 'Une boutique en ligne moderne inspirée de l’esthétique bohème et hippie. Galeries de produits, panier d’achat et design entièrement responsive qui capture l’esprit libre des bijoux artisanaux.',
+      ledgerTitle: 'Juryam Ledger – Tableau de bord',
+      ledgerDesc: 'Un tableau de bord privé de finances et de gestion pour ma boutique de bijoux. Il enregistre les commandes, les clients, le stock, les achats, les publicités et les dépenses, puis les transforme en graphiques SVG : bénéfice, marges, seuil de rentabilité, trésorerie et bénéfice par produit. Chaque compte se connecte avec Google et ne voit que ses propres données, stockées dans Firestore. Il propose aussi des objectifs mensuels, un SWOT hebdomadaire, des sauvegardes et une console SQL en lecture seule qui interroge les données avec SQLite directement dans le navigateur.',
       researchTitle: 'Portfolio de recherche & CMS',
       researchDesc: 'Un portfolio de recherche professionnel repensé et enrichi d’un système de gestion de contenu. Amélioration de l’interface, du responsive, de la lecture des articles et du rendu Markdown/KaTeX, avec l’intégration de Decap CMS et d’une authentification GitHub pour publier, modifier et gérer les médias facilement.',
       nomaTitle: 'Noma – Concept musical',
@@ -1417,6 +1463,8 @@
       bluTitle: 'Blu – Écriture & Leadership',
       bluDesc: 'Là où la clarté rencontre la force. Une présence numérique haut de gamme pour une voix engagée dans la transformation, l’état d’esprit et le leadership. Un design minimaliste et des messages poétiques créent une autorité calme qui invite à la croissance.',
       clientBadge: 'Projet client',
+      privateBadge: 'Projet privé',
+      askDemo: 'Demander une démo',
       collabBadge: 'Collaboration',
       conceptBadge: 'Concept en phase initiale',
       viewPrototype: 'Voir le prototype',
